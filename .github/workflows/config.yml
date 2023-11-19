@@ -24,6 +24,7 @@ jobs:
       - name: Copy previous run results
         run: |
           sudo mkdir -p allure-reports/history
+          sudo ll allure-reports
           sudo cp -R ./.github/gh-pages/history/* allure-reports/history
 
       - name: Install Allure service
