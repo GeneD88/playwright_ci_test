@@ -13,7 +13,9 @@ services:
       - /bin/sh
       - -c
       - |
-        apk update &&  apk add openjdk11-jre curl tar &&  curl -o allure-2.13.8.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/allure-commandline-2.13.8.tgz && tar -zxvf allure-2.13.8.tgz -C /opt/ && ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure && rm allure-2.13.8.tgz
+        apt-get update && apt-get install -y wget
+        wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure_2.24.1-1_all.deb
+        dpkg -i allure_2.24.1-1_all.deb
         ls -la && pip install --upgrade pip && pip debug && pip install -r requirements.txt && pip install playwright && pytest -sv --alluredir=reports
     # command: /bin/sh -c "ls -la && pytest -sv --alluredir=reports"
     working_dir: /usr/workspace
