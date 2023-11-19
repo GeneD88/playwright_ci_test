@@ -13,7 +13,7 @@ services:
       - /bin/sh
       - -c
       - |
-        apt-get update && apt-get install -y wget
+        apt-get update && apt-get install -y wget openjdk11-jre
         wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure_2.24.1-1_all.deb
         dpkg -i allure_2.24.1-1_all.deb
         ls -la && pip install --upgrade pip && pip debug && pip install -r requirements.txt && pip install playwright && pytest -sv --alluredir=reports
