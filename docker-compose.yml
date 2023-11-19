@@ -9,7 +9,12 @@ services:
     #     dockerfile: Dockerfile
     volumes:
       - ./:/usr/workspace
-    command: /bin/sh -c "ls -la && pip install --upgrade pip && pip debug && pip install -r requirements.txt && pip install playwright && pytest -sv --alluredir=reports"
+    command:
+      - /bin/sh
+      - -c
+      - |
+        apk update &&  apk add openjdk11-jre curl tar &&  curl -o allure-2.13.8.tgz -Ls https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/allure-commandline-2.13.8.tgz && tar -zxvf allure-2.13.8.tgz -C /opt/ && ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure && rm allure-2.13.8.tgz
+        ls -la && pip install --upgrade pip && pip debug && pip install -r requirements.txt && pip install playwright && pytest -sv --alluredir=reports
     # command: /bin/sh -c "ls -la && pytest -sv --alluredir=reports"
     working_dir: /usr/workspace
     environment:
