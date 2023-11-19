@@ -17,9 +17,10 @@ jobs:
 
       - name: Install Allure service
         run: |
+          sudo apt-get update
+          sudo apt-get install -y wget default-jre
           sudo wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure_2.24.1-1_all.deb
           sudo dpkg -i allure_2.24.1-1_all.deb
-          sudo apt-get install allure
           sudo docker-compose run regression /bin/sh -c "ls -la && allure generate reports --clean -o final-report"
 
       # - name: Generate Allure report
