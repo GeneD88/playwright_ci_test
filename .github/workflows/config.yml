@@ -17,7 +17,7 @@ jobs:
 
       - name: Generate Allure report
         run: |
-          sudo docker-compose run regression /bin/sh -c "allure generate reports --clean -o final-report"
+          sudo docker-compose run regression /bin/sh -c "ls -la && allure generate reports --clean -o final-report"
 
       - name: Deploy Allure report to Github Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
