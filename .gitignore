@@ -1,0 +1,11 @@
+.pytest_cache
+__pycache__
+*.iml
+.env
+reports
+./tests/__pycache__
+.venv
+./base/__pycache__
+./config/__pycache__
+./pages/__pycache__
+.trunk

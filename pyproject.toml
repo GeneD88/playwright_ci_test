@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "playwright-ci-test"
+version = "0.1.0"
+description = ""
+authors = ["genedex <8030464+GeneD88@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+playwright = "^1.39.0"
+allure-pytest = "^2.13.2"
+pytest = "^7.4.3"
+httpx = "^0.25.1"
+flaky = "^3.7.0"
+icecream = "^2.1.3"
+pytest-playwright = "^0.4.3"
+termcolor = "^2.3.0"
+python-dotenv = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

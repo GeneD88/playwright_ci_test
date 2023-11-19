@@ -1,0 +1,28 @@
+name: UI Regression
+
+on: [push]
+
+jobs:
+  ui-regression: 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run UI Regression with docker-compose
+        env:
+          LOGIN: ${{ secrets.LOGIN }}
+        run: |
+          docker-compose up --exit-code-from regression || true
+
+      - name: Generate Allure report
+        run: |
+          sudo docker-compose run regression /bin/sh -c "allure generate reports --clean -o final-report"
+
+      - name: Deploy Allure report to Github Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          branch: gh-pages
+          folder: final-report
+          clean: true

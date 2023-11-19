@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  regression:
+    # image: python:3.11.5-alpine3.18
+    image: mcr.microsoft.com/playwright/python:v1.39.0-jammy
+    # build:
+    #   context:
+    #     dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/workspace
+    command: /bin/sh -c "ls -la && pip install --upgrade pip && pip debug && pip install -r requirements.txt && pip install playwright && pytest -sv --alluredir=reports"
+    working_dir: /usr/workspace
+    environment:
+      - LOGIN=${LOGIN}
