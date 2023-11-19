@@ -15,6 +15,11 @@ jobs:
         run: |
           docker-compose up --exit-code-from regression || true
 
+      - name: Install Allure service
+        run: |
+          sudo wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure_2.24.1-1_all.deb
+          sudo dpkg -i allure_2.24.1-1_all.deb
+
       - name: Generate Allure report
         run: |
           sudo docker-compose run regression /bin/sh -c "ls -la && allure generate reports --clean -o final-report"
