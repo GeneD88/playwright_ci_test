@@ -9,11 +9,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Checkout gh-pages to Github runner
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: ./.github/gh-pages
+
       - name: Run UI Regression with docker-compose
         env:
           LOGIN: ${{ secrets.LOGIN }}
         run: |
           docker-compose up --exit-code-from regression || true
+
+      - name: Copy previous run results
+        run: |
+          sudo mkdir -p allure-reports/history
+          sudo cp -R ./.github/gh-pages/history/* allure-reports/history
 
       - name: Install Allure service
         run: |
