@@ -19,6 +19,7 @@ jobs:
         run: |
           sudo wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure_2.24.1-1_all.deb
           sudo dpkg -i allure_2.24.1-1_all.deb
+          sudo sudo apt-get install allure
 
       - name: Generate Allure report
         run: |
