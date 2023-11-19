@@ -42,6 +42,7 @@ def page():
         browser = play.chromium.launch(headless=True)
         context = browser.new_context(user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36 OPR/103.0.0.0')
         page = context.new_page()
+        page.set_default_timeout(10000)
         yield page
 
         browser.close()
